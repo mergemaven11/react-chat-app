@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from '@reach/router';
 
 import { auth, signInWithGoogle } from './Firebase';
+import Form from './styled/form';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -27,21 +28,21 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h1>Sign In</h1>
-      <div>
+    <Form.LiBox>
+      <Form.LeftSide>
+        <h1>Sign In</h1>
         {error !== null && <div>{error}</div>}
         <form>
-          <label htmlFor="userEmail">Email:</label>
+          {/* <label htmlFor="userEmail">Email:</label> */}
           <input
             type="email"
             name="userEmail"
             value={email}
-            placeholder="E.g: faruq123@gmail.com"
+            placeholder="E.g: youremail@gmail.com"
             id="userEmail"
             onChange={(event) => onChangeHandler(event)}
           />
-          <label htmlFor="userPassword">Password:</label>
+          {/* <label htmlFor="userPassword">Password:</label> */}
           <input
             type="password"
             name="userPassword"
@@ -59,14 +60,16 @@ const Login = () => {
             Sign in
           </button>
         </form>
-        <p>or</p>
+        <Form.Divide>or</Form.Divide>
+      </Form.LeftSide>
+      <Form.RightSide>
         <button onClick={signInWithGoogle}>Sign in with Google</button>
         <p>
           Don't have an account? <Link to="signUp">Sign up here</Link> <br />{' '}
           <Link to="passwordReset">Forgot Password?</Link>
         </p>
-      </div>
-    </div>
+      </Form.RightSide>
+    </Form.LiBox>
   );
 };
 export default Login;

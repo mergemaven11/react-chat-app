@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link } from '@reach/router';
 import { auth } from './Firebase';
 
+import Form from './styled/form';
+
 const PasswordReset = () => {
   const [email, setEmail] = useState('');
   const [emailHasBeenSent, setEmailHasBeenSent] = useState(false);
@@ -29,9 +31,9 @@ const PasswordReset = () => {
   };
 
   return (
-    <div>
-      <h1>Reset your Password</h1>
-      <div>
+    <Form.LiBox>
+      <Form.LeftSide>
+        <h1>Reset your Password</h1>
         <form action="">
           {emailHasBeenSent && <div>An email has been sent to you!</div>}
           {error !== null && <div>{error}</div>}
@@ -45,12 +47,14 @@ const PasswordReset = () => {
             onChange={onChangeHandler}
           />
           <button type="button" onClick={sendResetEmail}>
-            Send me a reset link
+            submit
           </button>
         </form>
+      </Form.LeftSide>
+      <Form.RightSide>
         <Link to="/">&larr; back to sign in page</Link>
-      </div>
-    </div>
+      </Form.RightSide>
+    </Form.LiBox>
   );
 };
 export default PasswordReset;

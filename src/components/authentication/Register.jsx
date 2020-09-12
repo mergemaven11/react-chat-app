@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from '@reach/router';
 
 import { auth, signInWithGoogle, generateUserDocument } from './Firebase';
+import Form from './styled/form';
 
 const Register = () => {
   const [email, setEmail] = useState('');
@@ -41,30 +42,30 @@ const Register = () => {
     }
   };
   return (
-    <div>
-      <h1>Sign Up</h1>
-      <div>
+    <Form.LiBox>
+      <Form.LeftSide>
+        <h1>Sign Up</h1>
         {error !== null && <div>{error}</div>}
         <form>
-          <label htmlFor="displayName">Display Name:</label>
+          {/* <label htmlFor="displayName">Display Name:</label> */}
           <input
             type="text"
             name="displayName"
             value={displayName}
-            placeholder="E.g: Faruq"
+            placeholder="E.g: CoolCat213"
             id="displayName"
             onChange={(event) => onChangeHandler(event)}
           />
-          <label htmlFor="userEmail">Email:</label>
+          {/* <label htmlFor="userEmail">Email:</label> */}
           <input
             type="email"
             name="userEmail"
             value={email}
-            placeholder="E.g: faruq123@gmail.com"
+            placeholder="E.g: youremail@gmail.com"
             id="userEmail"
             onChange={(event) => onChangeHandler(event)}
           />
-          <label htmlFor="userPassword">Password:</label>
+          {/* <label htmlFor="userPassword">Password:</label> */}
           <input
             type="password"
             name="userPassword"
@@ -82,15 +83,17 @@ const Register = () => {
             Sign up
           </button>
         </form>
-        <p>or</p>
-        <button type="button" onclick={signInWithGoogle}>
+        <Form.Divide>or</Form.Divide>
+      </Form.LeftSide>
+      <Form.RightSide>
+        <button type="button" onClick={signInWithGoogle}>
           Sign In with Google
         </button>
         <p>
           Already have an account? <Link to="/">Sign in here</Link>
         </p>
-      </div>
-    </div>
+      </Form.RightSide>
+    </Form.LiBox>
   );
 };
 export default Register;
